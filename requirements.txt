@@ -1,0 +1,12 @@
+# Dependencies for Rubik's Cube Solver
+# Removed kociemba due to C++ build requirements
+
+# Basic dependencies
+numpy>=1.20.0
+
+# Optional: For visualization and UI
+matplotlib>=3.3.0
+colorama>=0.4.4
+
+# Optional: For web interface
+flask>=2.0.0
