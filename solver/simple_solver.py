@@ -57,9 +57,9 @@ class SimpleCubeSolver:
         if self.is_solved(initial_state):
             return []
         
-        # Queue: (state, moves_to_reach_state)
-        queue = deque([(initial_state, [])])
-        visited = set()
+        # 1. INITIALIZATION
+        queue = deque([(initial_state, [])])  # (cube_state, move_sequence)
+        visited = set()                       # Track explored states
         
         # Convert state to string for hashing
         def state_to_string(state):
@@ -67,25 +67,29 @@ class SimpleCubeSolver:
         
         visited.add(state_to_string(initial_state))
         
+        # 2. STATE EXPLORATION
         while queue:
-            current_state, moves = queue.popleft()
+            current_state, moves = queue.popleft()  # Get next state to explore
             
             if len(moves) >= self.max_depth:
                 continue
                 
-            # Try each possible move
-            for move in VALID_MOVES:
+            # 3. BRANCHING - Try all 12 possible moves
+            for move in VALID_MOVES:  # ['U', "U'", 'D', "D'", 'R', "R'", 'L', "L'", 'F', "F'", 'B', "B'"]
+                # Apply move to current state
                 new_state = MOVE_FUNCS[move](current_state)
                 new_moves = moves + [move]
                 
+                # 4. GOAL CHECK
                 if self.is_solved(new_state):
-                    return new_moves
+                    return new_moves  # Found solution!
                 
+                # 5. DUPLICATE PREVENTION
                 state_str = state_to_string(new_state)
                 if state_str not in visited:
                     visited.add(state_str)
                     queue.append((new_state, new_moves))
-        
+    
         return None  # No solution found within max_depth
 
 def create_solved_cube():
