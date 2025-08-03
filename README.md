@@ -222,9 +222,6 @@ Modify the `COLORS` dictionary in `utils/visual.py` to customize face colors.
 - **Pattern generation**: Instant for simple patterns
 - **BFS solving**: Limited to ~7 moves for reasonable performance
 
-## Note on Kociemba Package
-
-The original plan was to use the `kociemba` Python package, but it requires Microsoft Visual C++ 14.0 or greater for compilation. To avoid build tool dependencies, this implementation provides a simple alternative solver with comprehensive visualization that works without any compilation requirements.
 
 ## Dependencies
 
